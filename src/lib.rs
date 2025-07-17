@@ -1,14 +1,16 @@
-#![doc(html_logo_url = "https://raw.githubusercontent.com/rtk-rs/.github/master/logos/logo2.jpg")]
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/nav-solutions/.github/master/logos/logo2.jpg"
+)]
 #![doc = include_str!("../README.md")]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 /*
- * CGGTTS is part of the rtk-rs framework.
+ * CGGTTS is part of the nav-solutions framework.
  * Authors: Guillaume W. Bres <guillaume.bressaix@gmail.com> et al.
- * (cf. https://github.com/rtk-rs/cggtts/graphs/contributors)
+ * (cf. https://github.com/nav-solutions/cggtts/graphs/contributors)
  * This framework is shipped under Mozilla Public V2 license.
  *
- * Documentation: https://github.com/rtk-rs/cggtts
+ * Documentation: https://github.com/nav-solutions/cggtts
  */
 
 extern crate gnss_rs as gnss;

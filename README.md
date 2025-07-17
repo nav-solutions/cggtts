@@ -3,17 +3,17 @@ CGGTTS
 
 Rust package to parse and generate CGGTTS data.
 
-[![Rust](https://github.com/rtk-rs/cggtts/actions/workflows/rust.yml/badge.svg)](https://github.com/rtk-rs/cggtts/actions/workflows/rust.yml)
-[![Rust](https://github.com/rtk-rs/cggtts/actions/workflows/daily.yml/badge.svg)](https://github.com/rtk-rs/cggtts/actions/workflows/daily.yml)
+[![Rust](https://github.com/nav-solutions/cggtts/actions/workflows/rust.yml/badge.svg)](https://github.com/nav-solutions/cggtts/actions/workflows/rust.yml)
+[![Rust](https://github.com/nav-solutions/cggtts/actions/workflows/daily.yml/badge.svg)](https://github.com/nav-solutions/cggtts/actions/workflows/daily.yml)
 [![crates.io](https://docs.rs/cggtts/badge.svg)](https://docs.rs/cggtts/)
 [![crates.io](https://img.shields.io/crates/d/cggtts.svg)](https://crates.io/crates/cggtts)
 
 [![MRSV](https://img.shields.io/badge/MSRV-1.82.0-orange?style=for-the-badge)](https://github.com/rust-lang/rust/releases/tag/1.82.0)
-[![License](https://img.shields.io/badge/license-MPL_2.0-orange?style=for-the-badge&logo=mozilla)](https://github.com/rtk-rs/sp3/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-MPL_2.0-orange?style=for-the-badge&logo=mozilla)](https://github.com/nav-solutions/sp3/blob/main/LICENSE)
 
 ## License
 
-This library is part of the [RTK-rs framework](https://github.com/rtk-rs) which
+This library is part of the [NAV-Solutions framework](https://github.com/nav-solutions) which
 is delivered under the [Mozilla V2 Public](https://www.mozilla.org/en-US/MPL/2.0) license.
 
 ## CGGTTS

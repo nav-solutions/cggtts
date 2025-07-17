@@ -1,11 +1,11 @@
 [package]
 name = "cggtts"
-version = "4.3.0"
+version = "4.3.1"
 license = "MPL-2.0"
 authors = ["Guillaume W. Bres <guillaume.bressaix@gmail.com>"]
 description = "CGGTTS data parsing and synthesis"
-homepage = "https://github.com/rtk-rs"
-repository = "https://github.com/rtk-rs/cggtts"
+homepage = "https://github.com/nav-solutions"
+repository = "https://github.com/nav-solutions/cggtts"
 keywords = ["geo", "gnss", "timing", "gps"]
 categories = ["science", "science", "parsing"]
 edition = "2018"
