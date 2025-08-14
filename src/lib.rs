@@ -325,6 +325,7 @@ impl CGGTTS {
     }
 
     /// Parse [CGGTTS] from a local file.
+    /// This will fail on CRC mismatches.
     /// Advanced CGGTTS files generated from modern GNSS
     /// receivers may describe the ionospheric delay compensation:
     /// ```
@@ -342,19 +343,30 @@ impl CGGTTS {
     ///```
     pub fn from_file<P: AsRef<Path>>(path: P) -> Result<Self, ParsingError> {
         let fd = File::open(path).unwrap_or_else(|e| panic!("File open error: {}", e));
-
         let mut reader = BufReader::new(fd);
-        Self::parse(&mut reader)
+        Self::parse(&mut reader, false)
+    }
+
+    /// Parse [CGGTTS] from a local file, but tolerates CRC errors (check your logs).
+    /// See [Self::from_file] for more information.
+    pub fn from_file_infaillible_crc<P: AsRef<Path>>(path: P) -> Result<Self, ParsingError> {
+        let fd = File::open(path).unwrap_or_else(|e| panic!("File open error: {}", e));
+        let mut reader = BufReader::new(fd);
+        Self::parse(&mut reader, true)
     }
 
     /// Parse a new [CGGTTS] from any [Read]able interface.
     /// This will fail on:
-    /// - Any critical standard violation
-    /// - If file revision is not 2E (latest)
-    /// - If following [Track]s do not contain the same [Constellation]
-    pub fn parse<R: Read>(reader: &mut BufReader<R>) -> Result<Self, ParsingError> {
+    /// - any critical standard violation
+    /// - CRC mismatched (if not tolerated)
+    /// - file revision is not 2E (latest)
+    /// - [Track]s do not contain the same [Constellation]
+    pub fn parse<R: Read>(
+        reader: &mut BufReader<R>,
+        tolerate_crc_error: bool,
+    ) -> Result<Self, ParsingError> {
         // Parse header section
-        let header = Header::parse(reader)?;
+        let header = Header::parse(reader, tolerate_crc_error)?;
 
         // Parse tracks:
         // consumes all remaning lines and attempt parsing on each new line.
@@ -390,6 +402,7 @@ impl CGGTTS {
     }
 
     /// Parse [CGGTTS] from gzip compressed local path.
+    /// CRC errors will not be tolerated.
     #[cfg(feature = "flate2")]
     #[cfg_attr(docsrs, doc(cfg(feature = "flate2")))]
     pub fn from_gzip_file<P: AsRef<Path>>(path: P) -> Result<Self, ParsingError> {
@@ -398,7 +411,19 @@ impl CGGTTS {
         let reader = GzDecoder::new(fd);
 
         let mut reader = BufReader::new(reader);
-        Self::parse(&mut reader)
+        Self::parse(&mut reader, false)
+    }
+
+    /// Parse [CGGTTS] from gzip compressed local path, but tolerates CRC errors.
+    #[cfg(feature = "flate2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "flate2")))]
+    pub fn from_gzip_file_infaillible_crc<P: AsRef<Path>>(path: P) -> Result<Self, ParsingError> {
+        let fd = File::open(path).unwrap_or_else(|e| panic!("File open error: {}", e));
+
+        let reader = GzDecoder::new(fd);
+
+        let mut reader = BufReader::new(reader);
+        Self::parse(&mut reader, true)
     }
 
     /// Format [CGGTTS] following standard specifications.
