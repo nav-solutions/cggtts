@@ -11,6 +11,9 @@ use std::{
     str::FromStr,
 };
 
+#[cfg(feature = "logs")]
+use log::error;
+
 fn parse_header_version(s: &str) -> Result<Version, ParsingError> {
     const MARKER: &str = "CGGTTS     GENERIC DATA FORMAT VERSION = ";
     const SIZE: usize = MARKER.len();
@@ -58,7 +61,13 @@ fn parse_hardware(s: &str) -> Result<Hardware, ParsingError> {
 
 impl Header {
     /// Parse [Header] from any [Read]able input.
-    pub fn parse<R: Read>(reader: &mut BufReader<R>) -> Result<Self, ParsingError> {
+    /// ## Inputs
+    /// - reader: mutable [BufReader] implementation
+    /// - tolerate_crc_error: allow the CRC to differ and still proceed
+    pub fn parse<R: Read>(
+        reader: &mut BufReader<R>,
+        tolerate_crc_error: bool,
+    ) -> Result<Self, ParsingError> {
         const CKSUM_PATTERN: &str = "CKSUM = ";
         const CKSUM_LEN: usize = CKSUM_PATTERN.len();
 
@@ -295,7 +304,15 @@ impl Header {
                 };
 
                 if value != crc {
-                    return Err(ParsingError::ChecksumValue);
+                    #[cfg(feature = "logs")]
+                    error!(
+                        "invalid file crc: got 0x{:02X} but expecting 0x{:02X}",
+                        value, crc
+                    );
+
+                    if !tolerate_crc_error {
+                        return Err(ParsingError::ChecksumValue);
+                    }
                 }
 
                 // CKSUM initiates the end of header section
