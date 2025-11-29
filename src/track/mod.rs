@@ -522,8 +522,7 @@ mod tests {
     use std::str::FromStr;
     #[test]
     fn track_parsing() {
-        let content =
-"G99 99 59568 001000 0780 099 0099 +9999999999 +99999       +1536   +181   26 999 9999 +999 9999 +999 00 00 L1C D3";
+        let content = "G99 99 59568 001000 0780 099 0099 +9999999999 +99999       +1536   +181   26 999 9999 +999 9999 +999 00 00 L1C D3";
         let track = Track::from_str(content);
         assert!(track.is_ok());
         let track = track.unwrap();
@@ -546,8 +545,7 @@ mod tests {
         assert_eq!(track.hc, 0);
         assert_eq!(track.frc, "L1C");
 
-        let content =
-"G99 99 59563 001400 0780 099 0099 +9999999999 +99999       +1588  +1027   27 999 9999 +999 9999 +999 00 00 L1C EA";
+        let content = "G99 99 59563 001400 0780 099 0099 +9999999999 +99999       +1588  +1027   27 999 9999 +999 9999 +999 00 00 L1C EA";
         let track = Track::from_str(content);
         assert!(track.is_ok());
         let track = track.unwrap();
@@ -568,8 +566,7 @@ mod tests {
         assert_eq!(track.hc, 0);
         assert_eq!(track.frc, "L1C");
 
-        let content =
-"G99 99 59563 232200 0780 099 0099 +9999999999 +99999       +1529   -507   23 999 9999 +999 9999 +999 00 00 L1C D9";
+        let content = "G99 99 59563 232200 0780 099 0099 +9999999999 +99999       +1529   -507   23 999 9999 +999 9999 +999 00 00 L1C D9";
         let track = Track::from_str(content);
         assert!(track.is_ok());
         let track = track.unwrap();
@@ -583,8 +580,7 @@ mod tests {
         assert_eq!(track.hc, 0);
         assert_eq!(track.frc, "L1C");
 
-        let content =
-"G99 99 59567 001400 0780 099 0099 +9999999999 +99999       +1561   -151   27 999 9999 +999 9999 +999 00 00 L1C D4";
+        let content = "G99 99 59567 001400 0780 099 0099 +9999999999 +99999       +1561   -151   27 999 9999 +999 9999 +999 00 00 L1C D4";
         let track = Track::from_str(content);
         assert!(track.is_ok());
         let track = track.unwrap();
@@ -609,8 +605,7 @@ mod tests {
 
     #[test]
     fn parser_ionospheric() {
-        let content =
-"R24 FF 57000 000600 0780 347 0394 +1186342 +0 163 +0 40 2 141 +22 23 -1 23 -1 29 +2 0 L3P EF";
+        let content = "R24 FF 57000 000600 0780 347 0394 +1186342 +0 163 +0 40 2 141 +22 23 -1 23 -1 29 +2 0 L3P EF";
         let track = Track::from_str(content);
         //assert_eq!(track.is_ok(), true);
         let track = track.unwrap();

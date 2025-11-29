@@ -295,7 +295,7 @@ impl SVTracker {
 
 #[cfg(test)]
 mod test {
-    use crate::prelude::{Duration, Epoch, Observation, SVTracker, SV};
+    use crate::prelude::{Duration, Epoch, Observation, SV, SVTracker};
     use std::str::FromStr;
 
     #[test]

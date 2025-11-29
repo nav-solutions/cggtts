@@ -1,4 +1,4 @@
-use std::str::{from_utf8, Utf8Error};
+use std::str::{Utf8Error, from_utf8};
 
 pub struct Utf8Buffer {
     inner: Vec<u8>,

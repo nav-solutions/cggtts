@@ -1,4 +1,4 @@
-use crate::prelude::{CommonViewClass, Duration, Epoch, IonosphericData, Track, TrackData, SV};
+use crate::prelude::{CommonViewClass, Duration, Epoch, IonosphericData, SV, Track, TrackData};
 
 /// [FittedData] resulting from running the fit algorithm over many [Observation]s.
 #[derive(Debug, Copy, Default, Clone)]

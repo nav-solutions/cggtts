@@ -254,17 +254,21 @@ mod test {
         assert_eq!(delay.antenna_cable_delay, 10.0);
         assert_eq!(delay.local_ref_delay, 20.0);
 
-        assert!(delay
-            .total_frequency_dependent_delay_nanos(&Code::C1)
-            .is_none());
+        assert!(
+            delay
+                .total_frequency_dependent_delay_nanos(&Code::C1)
+                .is_none()
+        );
 
         for (k, v) in delay.frequency_dependent_nanos_delay_iter() {
             assert_eq!(*k, Code::C1);
             assert_eq!(v, 80.0);
         }
 
-        assert!(delay
-            .total_frequency_dependent_delay_nanos(&Code::P1)
-            .is_none());
+        assert!(
+            delay
+                .total_frequency_dependent_delay_nanos(&Code::P1)
+                .is_none()
+        );
     }
 }

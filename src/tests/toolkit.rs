@@ -1,5 +1,5 @@
-use crate::prelude::{Epoch, Track, TrackData, CGGTTS};
-use rand::{distributions::Alphanumeric, Rng};
+use crate::prelude::{CGGTTS, Epoch, Track, TrackData};
+use rand::{Rng, distributions::Alphanumeric};
 
 pub fn cggtts_dut_model_comparison(dut: &CGGTTS, model: &CGGTTS) {
     assert_eq!(dut.header.version, model.header.version, "wrong version");

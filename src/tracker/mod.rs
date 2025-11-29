@@ -6,7 +6,7 @@ pub use fitted::FittedData;
 
 use crate::prelude::{Duration, SV};
 
-use std::{collections::hash_map::Keys, collections::HashMap};
+use std::{collections::HashMap, collections::hash_map::Keys};
 
 /// [SkyTracker] is used to track all Satellite vehicles
 /// in sight during a common view period and eventually collect CGGTTS.

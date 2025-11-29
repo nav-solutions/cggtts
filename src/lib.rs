@@ -26,7 +26,7 @@ use std::{
 };
 
 #[cfg(feature = "flate2")]
-use flate2::{read::GzDecoder, write::GzEncoder, Compression as GzCompression};
+use flate2::{Compression as GzCompression, read::GzDecoder, write::GzEncoder};
 
 mod header;
 
@@ -52,9 +52,9 @@ extern crate serde;
 pub mod prelude {
 
     pub use crate::{
+        CGGTTS,
         header::*,
         track::{CommonViewClass, IonosphericData, Track, TrackData},
-        CGGTTS,
     };
 
     #[cfg(feature = "scheduler")]
@@ -550,15 +550,13 @@ impl CGGTTS {
     ///   .unwrap();
     /// ```
     pub fn format<W: Write>(&self, writer: &mut BufWriter<W>) -> Result<(), FormattingError> {
-        const TRACK_LABELS_WITH_IONOSPHERIC_DATA: &str =
-        "SAT CL  MJD  STTIME TRKL ELV AZTH   REFSV      SRSV     REFSYS    SRSYS DSG IOE MDTR SMDT MDIO SMDI MSIO SMSI ISG FR HC FRC CK";
+        const TRACK_LABELS_WITH_IONOSPHERIC_DATA: &str = "SAT CL  MJD  STTIME TRKL ELV AZTH   REFSV      SRSV     REFSYS    SRSYS DSG IOE MDTR SMDT MDIO SMDI MSIO SMSI ISG FR HC FRC CK";
 
-        const UNIT_LABELS_WITH_IONOSPHERIC : &str = "             hhmmss  s  .1dg .1dg    .1ns     .1ps/s     .1ns    .1ps/s .1ns     .1ns.1ps/s.1ns.1ps/s.1ns.1ps/s.1ns";
+        const UNIT_LABELS_WITH_IONOSPHERIC: &str = "             hhmmss  s  .1dg .1dg    .1ns     .1ps/s     .1ns    .1ps/s .1ns     .1ns.1ps/s.1ns.1ps/s.1ns.1ps/s.1ns";
 
-        const TRACK_LABELS_WITHOUT_IONOSPHERIC_DATA: &str =
-            "SAT CL  MJD  STTIME TRKL ELV AZTH   REFSV      SRSV     REFSYS    SRSYS  DSG IOE MDTR SMDT MDIO SMDI FR HC FRC CK";
+        const TRACK_LABELS_WITHOUT_IONOSPHERIC_DATA: &str = "SAT CL  MJD  STTIME TRKL ELV AZTH   REFSV      SRSV     REFSYS    SRSYS  DSG IOE MDTR SMDT MDIO SMDI FR HC FRC CK";
 
-        const UNIT_LABELS_WITHOUT_IONOSPHERIC :&str = "             hhmmss  s  .1dg .1dg    .1ns     .1ps/s     .1ns    .1ps/s .1ns     .1ns.1ps/s.1ns.1ps/s";
+        const UNIT_LABELS_WITHOUT_IONOSPHERIC: &str = "             hhmmss  s  .1dg .1dg    .1ns     .1ps/s     .1ns    .1ps/s .1ns     .1ns.1ps/s.1ns.1ps/s";
 
         // create local (tiny) Utf-8 buffer
         let mut buf = Utf8Buffer::new(1024);
