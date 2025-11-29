@@ -8,7 +8,7 @@ homepage = "https://github.com/nav-solutions"
 repository = "https://github.com/nav-solutions/cggtts"
 keywords = ["geo", "gnss", "timing", "gps"]
 categories = ["science", "science", "parsing"]
-edition = "2018"
+edition = "2024"
 readme = "README.md"
 exclude = [
     "data/*",
