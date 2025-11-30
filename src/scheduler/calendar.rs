@@ -1,5 +1,5 @@
 //! Common View Planification table
-use crate::scheduler::period::{CommonViewPeriod, BIPM_REFERENCE_MJD};
+use crate::scheduler::period::{BIPM_REFERENCE_MJD, CommonViewPeriod};
 use hifitime::prelude::{Duration, Epoch, TimeScale, Unit};
 use thiserror::Error;
 
@@ -222,11 +222,7 @@ impl CommonViewCalendar {
             }
         };
 
-        if utc {
-            t_utc
-        } else {
-            t_utc.to_time_scale(ts)
-        }
+        if utc { t_utc } else { t_utc.to_time_scale(ts) }
     }
 
     /// Returns datetime (as [Epoch]) of next active data collection

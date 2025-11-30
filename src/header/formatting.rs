@@ -145,7 +145,7 @@ mod test {
     use std::io::BufWriter;
     use std::path::Path;
 
-    use crate::{buffer::Utf8Buffer, CGGTTS};
+    use crate::{CGGTTS, buffer::Utf8Buffer};
 
     #[test]
     fn header_crc_buffering() {
