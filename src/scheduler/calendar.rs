@@ -230,7 +230,7 @@ impl CommonViewCalendar {
     /// to [TimeScale::UTC], we tolerate other timescales here.
     pub fn next_data_collection_after(&self, t: Epoch) -> Epoch {
         let mut next_t = self.next_period_start_after(t);
-        if self.period.setup_duration == Duration::ZERO {
+        if self.period.setup_duration != Duration::ZERO {
             next_t += self.period.setup_duration;
         }
         next_t
