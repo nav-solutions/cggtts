@@ -49,4 +49,4 @@ hifitime = { version = "4", features = ["serde", "std"] }
 serde = { version = "1", optional = true, features = ["derive"] }
 
 [dev-dependencies]
-rand = "0.8"
+rand = "0.10"
