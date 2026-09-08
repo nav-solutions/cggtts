@@ -44,7 +44,7 @@ strum_macros = "0.28"
 flate2 = { version = "1", optional = true }
 log = { version = "0.4", optional = true }
 polyfit-rs = { version = "0.2", optional = true }
-gnss-rs = { version = "2.5", features = ["serde"] }
+gnss-rs = { version = "2", features = ["serde"] }
 hifitime = { version = "4", features = ["serde", "std"] }
 serde = { version = "1", optional = true, features = ["derive"] }
 
